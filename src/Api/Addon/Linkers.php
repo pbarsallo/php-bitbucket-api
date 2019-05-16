@@ -7,7 +7,7 @@ namespace Bitbucket\Api\Addon;
 use Bitbucket\Api\Addon\Linkers\Values;
 
 /**
- * Linkers API class
+ * Linkers API Class
  * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/addon/linkers
  *
  * @author Patrick Barsallo

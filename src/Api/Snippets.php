@@ -8,17 +8,17 @@ use Bitbucket\Api\Snippets\User;
 
 class Snippets extends BaseApi
 {
-    public function create(array $params)
+    public function create(array $params) : array
     {
 
     }
 
-    public function all(array $params = [])
+    public function all(array $params = []) : array
     {
 
     }
 
-    public function user(string $username)
+    public function user(string $username) : User
     {
         return new User($username);
     }

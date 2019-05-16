@@ -6,6 +6,11 @@ namespace Bitbucket\Api\Repositories\User\Commit\Statuses;
 
 use Bitbucket\Api\Repositories\User\Commit\BaseCommitApi;
 
+/**
+ * Base User Repository Commit Statuses API Class
+ *
+ * @author Patrick Barsallo
+ */
 class BaseStatusesApi extends BaseCommitApi
 {
     /**
@@ -13,6 +18,11 @@ class BaseStatusesApi extends BaseCommitApi
      */
     protected $statusesUri;
 
+    /**
+     * Create new base statues API instance
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct($this->node);

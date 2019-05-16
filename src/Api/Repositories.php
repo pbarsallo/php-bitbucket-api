@@ -40,7 +40,7 @@ class Repositories extends BaseApi
      *
      * @return array
      */
-    public function show(string $username, array $params = [])
+    public function show(string $username, array $params = []) : array
     {
         return $this->get("{$this->repositoriesUri}/{$username}", $params);
     }

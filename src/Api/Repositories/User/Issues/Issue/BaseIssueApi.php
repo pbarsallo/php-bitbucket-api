@@ -6,6 +6,11 @@ namespace Bitbucket\Api\Repositories\User\Issues\Issue;
 
 use Bitbucket\Api\Repositories\User\Issues\BaseIssuesApi;
 
+/**
+ * Base User Repository Issue API Class
+ *
+ * @author Patrick Barsallo
+ */
 class BaseIssueApi extends BaseIssuesApi
 {
     /**
@@ -13,6 +18,13 @@ class BaseIssueApi extends BaseIssuesApi
      */
     protected $issueUri;
 
+    /**
+     * Create new base issue API class
+     *
+     * @param string $issueId
+     *
+     * @return void
+     */
     public function __construct(string $issueId)
     {
         parent::__construct();

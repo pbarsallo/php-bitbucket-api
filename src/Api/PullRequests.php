@@ -25,7 +25,7 @@ class PullRequests extends BaseApi
      *
      * @return array
      */
-    public function show(string $targetUser, array $params = [])
+    public function show(string $targetUser, array $params = []) : array
     {
         return $this->get("{$this->pullRequestsUri}/{$targetUser}", $params);
     }

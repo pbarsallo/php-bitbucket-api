@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Bitbucket\Api\Repositories\User\BranchingModel;
 
 use Bitbucket\Api\Repositories\User\BaseUserApi;
-use Bitbucket\Http\HttpClient;
 
 /**
- * Branching model API class
+ * Base Branching Model API Class
  *
  * @author Patrick Barsallo
  */

@@ -15,74 +15,178 @@ use Bitbucket\Api\Repositories\User\PullRequests\PullRequest\Merge;
 use Bitbucket\Api\Repositories\User\PullRequests\PullRequest\Patch;
 use Bitbucket\Api\Repositories\User\PullRequests\PullRequest\Statuses;
 
+/**
+ * User Repository Pull Requests API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/pullrequests
+ *
+ * @author Patrick Barsallo
+ */
 class PullRequests extends BaseUserApi
 {
-    public function create(array $params = [])
+    /**
+     * Open a new pull request
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function create(array $params = []) : array
     {
         return $this->post("{$this->userRepositoryUri}/pullrequests", $params);
     }
 
-    public function all(array $params = [])
+    /**
+     * List all pull requests
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function all(array $params = []) : array
     {
         return $this->get("{$this->userRepositoryUri}/pullrequests", $params);
     }
 
-    public function update(string $pullRequestId, array $params = [])
+    /**
+     * Update a pull request
+     *
+     * @param string $pullRequestId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function update(string $pullRequestId, array $params = []) : array
     {
         return $this->post("{$this->userRepositoryUri}/pullrequests/{$pullRequestId}", $params);
     }
 
-    public function show(string $pullRequestId, array $params = [])
+    /**
+     * Get a specific pull request
+     *
+     * @param string $pullRequestId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $pullRequestId, array $params = []) : array
     {
         return $this->post("{$this->userRepositoryUri}/pullrequests/{$pullRequestId}", $params);
     }
 
-    public function getActivity()
+    /**
+     * Get pull request activity API
+     *
+     * @return Activity
+     */
+    public function activity() : Activity
     {
         return new Activity;
     }
 
-    public function approval(string $pullRequestId)
+    /**
+     * Get pull request approval API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Approval
+     */
+    public function approval(string $pullRequestId) : Approval
     {
         return new Approval($pullRequestId);
     }
 
-    public function comments(string $pullRequestId)
+    /**
+     * Get pull request comments API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Comments
+     */
+    public function comments(string $pullRequestId) : Comments
     {
         return new Comments($pullRequestId);
     }
 
-    public function commits(string $pullRequestId)
+    /**
+     * Get pull request commits API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Commits
+     */
+    public function commits(string $pullRequestId) : Commits
     {
         return new Commits($pullRequestId);
     }
 
-    public function declination(string $pullRequestId)
+    /**
+     * Get pull request declination API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Declination
+     */
+    public function declination(string $pullRequestId) : Declination
     {
         return new Declination($pullRequestId);
     }
 
-    public function diff(string $pullRequestId)
+    /**
+     * Get pull request diff API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Diff
+     */
+    public function diff(string $pullRequestId) : Diff
     {
         return new Diff($pullRequestId);
     }
 
-    public function diffStat(string $pullRequestId)
+    /**
+     * Get pull request diff stat API
+     *
+     * @param string $pullRequestId
+     *
+     * @return DiffStat
+     */
+    public function diffStat(string $pullRequestId) : DiffStat
     {
         return new DiffStat($pullRequestId);
     }
 
-    public function merge(string $pullRequestId)
+    /**
+     * Get pull request merge API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Merge
+     */
+    public function merge(string $pullRequestId) : Merge
     {
         return new Merge($pullRequestId);
     }
 
-    public function patch(string $pullRequestId)
+    /**
+     * Get pull request patch API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Patch
+     */
+    public function patch(string $pullRequestId) : Patch
     {
         return new Patch($pullRequestId);
     }
 
-    public function statuses(string $pullRequestId)
+    /**
+     * Get pull request statuses API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Statuses
+     */
+    public function statuses(string $pullRequestId) : Statuses
     {
         return new Statuses($pullRequestId);
     }

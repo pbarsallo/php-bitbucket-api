@@ -8,7 +8,7 @@ use Bitbucket\Api\BaseApi;
 use Bitbucket\Http\HttpClient;
 
 /**
- * Base repositories API class
+ * Base Repositories API Class
  *
  * @author Patrick Barsallo
  */

@@ -7,7 +7,7 @@ namespace Bitbucket\Api\Addon;
 use Bitbucket\Api\BaseApi;
 
 /**
- * Base add-on API class
+ * Base Add-On API Class
  *
  * @author Patrick Barsallo
  */

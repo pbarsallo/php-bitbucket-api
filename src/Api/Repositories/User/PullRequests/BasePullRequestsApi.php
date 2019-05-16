@@ -6,6 +6,11 @@ namespace Bitbucket\Api\Repositories\User\PullRequests;
 
 use Bitbucket\Api\Repositories\User\BaseUserApi;
 
+/**
+ * Base User Repository Pull Requests API Class
+ *
+ * @author Patrick Barsallo
+ */
 class BasePullRequestsApi extends BaseUserApi
 {
     /**
@@ -13,6 +18,11 @@ class BasePullRequestsApi extends BaseUserApi
      */
     protected $pullRequestsUri;
 
+    /**
+     * Create new base pull requests API instance
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct($this->repoSlug);

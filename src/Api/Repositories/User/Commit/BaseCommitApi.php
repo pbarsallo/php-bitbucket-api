@@ -6,6 +6,11 @@ namespace Bitbucket\Api\Repositories\User\Commit;
 
 use Bitbucket\Api\Repositories\User\BaseUserApi;
 
+/**
+ * Base User Repository Commit API Class
+ *
+ * @author Patrick Barsallo
+ */
 class BaseCommitApi extends BaseUserApi
 {
     /**
@@ -18,6 +23,13 @@ class BaseCommitApi extends BaseUserApi
      */
     protected $commitUri;
 
+    /**
+     * Create a new base commit API instance
+     *
+     * @param string $node
+     *
+     * @return void
+     */
     public function __construct(string $node)
     {
         parent::__construct($this->repoSlug);
