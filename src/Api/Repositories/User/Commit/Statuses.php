@@ -6,37 +6,15 @@ namespace Bitbucket\Api\Repositories\User\Commit;
 
 use Bitbucket\Api\Repositories\User\Commit\Statuses\Build;
 
-class Statuses
+class Statuses extends BaseCommitApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $node;
-
-    public function __construct(string $username, string $repoSlug, string $node)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-        $this->node = $node;
-    }
-
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->commitUri}/statuses", $params);
     }
 
     public function build()
     {
-        return new Build($this->username, $this->repoSlug, $this->node);
+        return new Build;
     }
 }

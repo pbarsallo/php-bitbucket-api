@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Addon;
 
-use Bitbucket\Api\Addon;
 use Bitbucket\Api\Addon\Linkers\Values;
-use Bitbucket\Http\HttpClient;
 
 /**
  * Linkers API class
@@ -14,25 +12,8 @@ use Bitbucket\Http\HttpClient;
  *
  * @author Patrick Barsallo
  */
-class Linkers extends Addon
+class Linkers extends BaseAddonApi
 {
-    /**
-     * Base URI for linkers API
-     */
-    const URI = parent::URI . '/linkers';
-
-    /**
-     * Create Linkers API instance
-     *
-     * @param HttpClient $httpClient
-     *
-     * @return void
-     */
-    public function __construct(HttpClient $httpClient)
-    {
-        parent::__construct($httpClient);
-    }
-
     /**
      * List all add-on linkers
      *
@@ -42,7 +23,7 @@ class Linkers extends Addon
      */
     public function all(array $params = []) : array
     {
-        return $this->get(self::URI, $params);
+        return $this->get("{$this->addonUri}/linkers", $params);
     }
 
     /**
@@ -55,7 +36,7 @@ class Linkers extends Addon
      */
     public function show(string $linkerKey, array $params = []) : array
     {
-        return $this->get(self::URI . "/$linkerKey");
+        return $this->get("{$this->addonUri}/linkers/$linkerKey", $params);
     }
 
     /**
@@ -67,6 +48,6 @@ class Linkers extends Addon
      */
     public function values(string $linkerKey) : Values
     {
-        return new Values($this->httpClient, $linkerKey);
+        return new Values($linkerKey);
     }
 }

@@ -4,37 +4,15 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Commit;
 
-class Approval
+class Approval extends BaseCommitApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $node;
-
-    public function __construct(string $username, string $repoSlug, string $node)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-        $this->node = $node;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->commitUri}/approve", $params);
     }
 
     public function remove(array $params = [])
     {
-
+        return $this->delete("{$this->commitUri}/approve", $params);
     }
 }

@@ -10,52 +10,30 @@ use Bitbucket\Api\Repositories\User\Issues\Issue\Comments;
 use Bitbucket\Api\Repositories\User\Issues\Issue\Vote;
 use Bitbucket\Api\Repositories\User\Issues\Issue\Watch;
 
-class Issue
+class Issue extends BaseIssuesApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $issueId;
-
-    public function __construct(string $username, string $repoSlug, string $issueId)
+    public function attachments(string $issueId)
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-        $this->issueId = $issueId;
+        return new Attachments($issueId);
     }
 
-    public function attachments()
+    public function changes(string $issueId)
     {
-        return new Attachments($this->username, $this->repoSlug, $this->issueId);
+        return new Changes($issueId);
     }
 
-    public function changes()
+    public function comments(string $issueId)
     {
-        return new Changes($this->username, $this->repoSlug, $this->issueId);
+        return new Comments($issueId);
     }
 
-    public function comments()
+    public function vote(string $issueId)
     {
-        return new Comments($this->username, $this->repoSlug, $this->issueId);
+        return new Vote($issueId);
     }
 
-    public function vote()
+    public function watch(string $issueId)
     {
-        return new Vote($this->username, $this->repoSlug, $this->issueId);
-    }
-
-    public function watch()
-    {
-        return new Watch($this->username, $this->repoSlug, $this->issueId);
+        return new Watch($issueId);
     }
 }

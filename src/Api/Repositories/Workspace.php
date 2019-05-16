@@ -12,18 +12,8 @@ use Bitbucket\Api\Repositories\Workspace\PipelinesConfig;
 use Bitbucket\Api\Repositories\Workspace\Properties;
 use Bitbucket\Api\Repositories\Workspace\PullRequests;
 
-class Workspace
+class Workspace extends BaseRepositoriesApi
 {
-    /**
-     * @var string
-     */
-    private $workspace;
-
-    public function __construct(string $workspace)
-    {
-        $this->workspace = $workspace;
-    }
-
     public function commit(string $repoSlug)
     {
         return new Commit($this->workspace, $repoSlug);

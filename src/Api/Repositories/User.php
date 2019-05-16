@@ -26,140 +26,315 @@ use Bitbucket\Api\Repositories\User\Src;
 use Bitbucket\Api\Repositories\User\Versions;
 use Bitbucket\Api\Repositories\User\Watchers;
 
-class User
+/**
+ * User Repositories API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D
+ *
+ * @author Patrick Barsallo
+ */
+class User extends BaseRepositoriesApi
 {
     /**
-     * @var string
+     * Update a repository
+     *
+     * @param string $repoSlug
+     * @param array  $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function update(string $repoSlug, array $params = []) : array
     {
-        $this->username = $username;
+        return $this->put("{$this->userRepositoriesUri}/{$repoSlug}", $params);
     }
 
-    public function update(string $repoSlug)
+    /**
+     * Create a repository
+     *
+     * @param string $repoSlug
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function create(string $repoSlug, array $params = []) : array
     {
-
+        return $this->post("{$this->userRepositoriesUri}/{$repoSlug}", $params);
     }
 
-    public function create(string $repoSlug)
+    /**
+     * Get a repository
+     *
+     * @param string $repoSlug
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $repoSlug, array $params = []) : array
     {
-
+        return $this->get("{$this->userRepositoriesUri}/{$repoSlug}", $params);
     }
 
-    public function show(string $repoSlug, array $params = [])
+    /**
+     * Remove a repository
+     *
+     * @param string $repoSlug
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $repoSlug, array $params = []) : array
     {
-
+        return $this->delete("{$this->userRepositoriesUri}/{$repoSlug}", $params);
     }
 
-    public function remove(string $repoSlug, array $params = [])
+    /**
+     * Get repository branch restrictions API
+     *
+     * @param string $repoSlug
+     *
+     * @return BranchRestrictions
+     */
+    public function branchRestrictions(string $repoSlug) : BranchRestrictions
     {
-
+        return new BranchRestrictions($repoSlug);
     }
 
-    public function branchRestrictions(string $repoSlug)
+    /**
+     * Get repository branching model API
+     *
+     * @param string $repoSlug
+     *
+     * @return BranchingModel
+     */
+    public function branchingModel(string $repoSlug) : BranchingModel
     {
-        return new BranchRestrictions($this->username, $repoSlug);
+        return new BranchingModel($repoSlug);
     }
 
-    public function branchingModel(string $repoSlug)
+    /**
+     * Get repository commit API
+     *
+     * @param string $repoSlug
+     *
+     * @return Commit
+     */
+    public function commit(string $repoSlug) : Commit
     {
-        return new BranchingModel($this->username, $repoSlug);
+        return new Commit($repoSlug);
     }
 
-    public function commit(string $repoSlug)
+    /**
+     * Get repository commits API
+     *
+     * @param string $repoSlug
+     *
+     * @return Commits
+     */
+    public function commits(string $repoSlug) : Commits
     {
-        return new Commit($this->username, $repoSlug);
+        return new Commits($repoSlug);
     }
 
-    public function commits(string $repoSlug)
+    /**
+     * Get repository components API
+     *
+     * @param string $repoSlug
+     *
+     * @return Components
+     */
+    public function components(string $repoSlug) : Components
     {
-        return new Commits($this->username, $repoSlug);
+        return new Components($repoSlug);
     }
 
-    public function components(string $repoSlug)
+    /**
+     * Get repository default reviewers API
+     *
+     * @param string $repoSlug
+     *
+     * @return DefaultReviewers
+     */
+    public function defaultReviewers(string $repoSlug) : DefaultReviewers
     {
-        return new Components($this->username, $repoSlug);
+        return new DefaultReviewers($repoSlug);
     }
 
-    public function defaultReviewers(string $repoSlug)
+    /**
+     * Get repository deploy keys API
+     *
+     * @param string $repoSlug
+     *
+     * @return DeployKeys
+     */
+    public function deployKeys(string $repoSlug) : DeployKeys
     {
-        return new DefaultReviewers($this->username, $repoSlug);
+        return new DeployKeys($repoSlug);
     }
 
-    public function deployKeys(string $repoSlug)
+    /**
+     * Get repository diff API
+     *
+     * @param string $repoSlug
+     *
+     * @return Diff
+     */
+    public function diff(string $repoSlug) : Diff
     {
-        return new DeployKeys($this->username, $repoSlug);
+        return new Diff($repoSlug);
     }
 
-    public function diff(string $repoSlug)
+    /**
+     * Get repository diff stat API
+     *
+     * @param string $repoSlug
+     *
+     * @return DiffStat
+     */
+    public function diffStat(string $repoSlug) : DiffStat
     {
-        return new Diff($this->username, $repoSlug);
+        return new DiffStat($repoSlug);
     }
 
-    public function diffStat(string $repoSlug)
+    /**
+     * Get repository downloads API
+     *
+     * @param string $repoSlug
+     *
+     * @return Downloads
+     */
+    public function downloads(string $repoSlug) : Downloads
     {
-        return new DiffStat($this->username, $repoSlug);
+        return new Downloads($repoSlug);
     }
 
-    public function downloads(string $repoSlug)
+    /**
+     * Get repository file history API
+     *
+     * @param string $repoSlug
+     *
+     * @return FileHistory
+     */
+    public function fileHistory(string $repoSlug) : FileHistory
     {
-        return new Downloads($this->username, $repoSlug);
+        return new FileHistory($repoSlug);
     }
 
-    public function fileHistory(string $repoSlug)
+    /**
+     * Get repository forks API
+     *
+     * @param string $repoSlug
+     *
+     * @return Forks
+     */
+    public function forks(string $repoSlug) : Forks
     {
-        return new FileHistory($this->username, $repoSlug);
+        return new Forks($repoSlug);
     }
 
-    public function forks(string $repoSlug)
+    /**
+     * Get repository hooks API
+     *
+     * @param string $repoSlug
+     *
+     * @return Hooks
+     */
+    public function hooks(string $repoSlug) : Hooks
     {
-        return new Forks($this->username, $repoSlug);
+        return new Hooks($repoSlug);
     }
 
-    public function hooks(string $repoSlug)
+    /**
+     * Get repository issues API
+     *
+     * @param string $repoSlug
+     *
+     * @return Issues
+     */
+    public function issues(string $repoSlug) : Issues
     {
-        return new Hooks($this->username, $repoSlug);
+        return new Issues($repoSlug);
     }
 
-    public function issues(string $repoSlug)
+    /**
+     * Get repository milestones API
+     *
+     * @param string $repoSlug
+     *
+     * @return Milestones
+     */
+    public function milestones(string $repoSlug) : Milestones
     {
-        return new Issues($this->username, $repoSlug);
+        return new Milestones($repoSlug);
     }
 
-    public function milestones(string $repoSlug)
+    /**
+     * Get repository patch API
+     *
+     * @param string $repoSlug
+     *
+     * @return Patch
+     */
+    public function patch(string $repoSlug) : Patch
     {
-        return new Milestones($this->username, $repoSlug);
+        return new Patch($repoSlug);
     }
 
-    public function patch(string $repoSlug)
+    /**
+     * Get repostiroy pull requests API
+     *
+     * @param string $repoSlug
+     *
+     * @return PullRequests
+     */
+    public function pullRequests(string $repoSlug) : PullRequests
     {
-        return new Patch($this->username, $repoSlug);
+        return new PullRequests($repoSlug);
     }
 
-    public function pullRequests(string $repoSlug)
+    /**
+     * Get repository refs API
+     *
+     * @param string $repoSlug
+     *
+     * @return Refs
+     */
+    public function refs(string $repoSlug) : Refs
     {
-        return new PullRequests($this->username, $repoSlug);
+        return new Refs($repoSlug);
     }
 
-    public function refs(string $repoSlug)
+    /**
+     * Get repository src API
+     *
+     * @param string $repoSlug
+     *
+     * @return Src
+     */
+    public function src(string $repoSlug) : Src
     {
-        return new Refs($this->username, $repoSlug);
+        return new Src($repoSlug);
     }
 
-    public function src(string $repoSlug)
+    /**
+     * Get repository versions API
+     *
+     * @param string $repoSlug
+     *
+     * @return Versions
+     */
+    public function versions(string $repoSlug) : Versions
     {
-        return new Src($this->username, $repoSlug);
+        return new Versions($repoSlug);
     }
 
-    public function versions(string $repoSlug)
+    /**
+     * Get repository watchers API
+     *
+     * @param string $repoSlug
+     *
+     * @return Watchers
+     */
+    public function watchers(string $repoSlug) : Watchers
     {
-        return new Versions($this->username, $repoSlug);
-    }
-
-    public function watchers(string $repoSlug)
-    {
-        return new Watchers($this->username, $repoSlug);
+        return new Watchers($repoSlug);
     }
 }

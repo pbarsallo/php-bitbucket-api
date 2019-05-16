@@ -4,42 +4,20 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Commit;
 
-class Comments
+class Comments extends BaseCommitApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $node;
-
-    public function __construct(string $username, string $repoSlug, string $node)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-        $this->node = $node;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->commitUri}/comments", $params);
     }
 
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->commitUri}/comments", $params);
     }
 
     public function show(int $commentId, array $params = [])
     {
-
+        return $this->get("{$this->commitUri}/comments/{$commentId}", $params);
     }
 }

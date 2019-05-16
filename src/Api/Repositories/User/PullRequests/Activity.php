@@ -4,31 +4,15 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\PullRequests;
 
-class Activity
+class Activity extends BasePullRequestsApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->pullRequestsUri}/activity", $params);
     }
 
     public function show(string $pullRequestId, array $params = [])
     {
-
+        return $this->get("{$this->pullRequestsUri}/activity/$pullRequestId", $params);
     }
 }

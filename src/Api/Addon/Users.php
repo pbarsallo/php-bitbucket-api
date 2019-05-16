@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Addon;
 
-use Bitbucket\Api\Addon;
 use Bitbucket\Api\Addon\Users\Events;
-use Bitbucket\Http\HttpClient;
 
 /**
  * Add-On Events API Class
@@ -14,41 +12,17 @@ use Bitbucket\Http\HttpClient;
  *
  * @author Patrick Barsallo
  */
-class Users extends Addon
+class Users extends BaseAddonApi
 {
-    /**
-     * Base URI for add-on users API
-     */
-    const URI = parent::URI . '/users';
-
-    /*
-     * @var string
-     */
-    private $targetUser;
-
-    /**
-     * Create an add-on events API instance
-     *
-     * @param HttpClient $httpClient
-     * @param string     $targetUser
-     *
-     * @return void
-     */
-    public function __construct(HttpClient $httpClient, string $targetUser)
-    {
-        parent::__construct($httpClient);
-        $this->targetUser = $targetUser;
-    }
-
     /**
      * Get add-on events API
      *
-     * @param string $eventKey
+     * @param string $targetUser
      *
      * @return Events
      */
-    public function events(string $eventKey) : Events
+    public function events(string $targetUser) : Events
     {
-        return new Events($this->httpClient, $this->targetUser, $eventKey);
+        return new Events($targetUser);
     }
 }

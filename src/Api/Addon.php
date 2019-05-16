@@ -6,7 +6,6 @@ namespace Bitbucket\Api;
 
 use Bitbucket\Api\Addon\Linkers;
 use Bitbucket\Api\Addon\Users;
-use Bitbucket\Http\HttpClient;
 
 /**
  * Add-On API Class
@@ -17,21 +16,9 @@ use Bitbucket\Http\HttpClient;
 class Addon extends BaseApi
 {
     /**
-     * Base URI for add-on APIs
+     * @var string
      */
-    const URI = '/addon';
-
-    /**
-     * Create add-on API instance
-     *
-     * @param HttpClient $httpClient
-     *
-     * @return void
-     */
-    public function __construct(HttpClient $httpClient)
-    {
-        parent::__construct($httpClient);
-    }
+    private $uri = '/addon';
 
     /**
      * Update an add-on
@@ -40,9 +27,9 @@ class Addon extends BaseApi
      *
      * @return array
      */
-    public function update(array $params) : array
+    public function update(array $params = []) : array
     {
-        return $this->put(self::URI, $params);
+        return $this->put("{$this->uri}", $params);
     }
 
     /**
@@ -54,7 +41,7 @@ class Addon extends BaseApi
      */
     public function remove(array $params = []) : array
     {
-        return $this->delete(self::URI, $params);
+        return $this->delete("{$this->uri}", $params);
     }
 
     /**
@@ -64,18 +51,16 @@ class Addon extends BaseApi
      */
     public function linkers() : Linkers
     {
-        return new Linkers($this->httpClient);
+        return new Linkers;
     }
 
     /**
      * Get add-on users API
      *
-     * @param string $targetUser
-     *
      * @return Users
      */
-    public function users(string $targetUser) : Users
+    public function users() : Users
     {
-        return new Users($this->httpClient, $targetUser);
+        return new Users;
     }
 }

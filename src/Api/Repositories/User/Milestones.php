@@ -4,31 +4,15 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User;
 
-class Milestones
+class Milestones extends BaseUserApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/milestones", $params);
     }
 
     public function show(int $milestoneId, array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/milestones/{$milestoneId}", $params);
     }
 }

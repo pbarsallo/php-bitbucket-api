@@ -8,61 +8,45 @@ use Bitbucket\Api\Repositories\User\Issues\Export;
 use Bitbucket\Api\Repositories\User\Issues\Import;
 use Bitbucket\Api\Repositories\User\Issues\Issue;
 
-class Issues
+class Issues extends BaseUserApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->userRepositoryUri}/issues", $params);
     }
 
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/issues", $params);
     }
 
-    public function update(string $issueId, array $params)
+    public function update(string $issueId, array $params = [])
     {
-
+        return $this->put("{$this->userRepositoryUri}/issues/{$issueId}", $params);
     }
 
     public function show(string $issueId, array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/issues/{$issueId}", $params);
     }
 
     public function remove(string $issueId, array $params = [])
     {
-
+        return $this->delete("{$this->userRepositoryUri}/issues/{$issueId}", $params);
     }
 
     public function export()
     {
-        return new Export($this->username, $this->repoSlug);
+        return new Export;
     }
 
     public function import()
     {
-        return new Import($this->username, $this->repoSlug);
+        return new Import;
     }
 
-    public function issue($issueId)
+    public function issue()
     {
-        return new Issue($this->username, $this->repoSlug, $issueId);
+        return new Issue;
     }
 }

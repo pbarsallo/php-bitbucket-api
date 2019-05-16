@@ -4,41 +4,25 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User;
 
-class DefaultReviewers
+class DefaultReviewers extends BaseUserApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/default-reviewers", $params);
     }
 
-    public function update(string $username, array $params)
+    public function update(string $username, array $params = [])
     {
-
+        return $this->put("{$this->userRepositoryUri}/default-reviewers/{$username}", $params);
     }
 
     public function show(string $username, array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/default-reviewers/{$username}", $params);
     }
 
     public function remove(string $username, array $params = [])
     {
-
+        return $this->delete("{$this->userRepositoryUri}/default-reviewers/{$username}", $params);
     }
 }

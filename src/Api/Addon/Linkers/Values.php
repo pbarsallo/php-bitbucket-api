@@ -4,41 +4,14 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Addon\Linkers;
 
-use Bitbucket\Api\Addon\Linkers;
-use Bitbucket\Http\HttpClient;
-
 /**
  * Linker Values API
  * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/addon/linkers/%7Blinker_key%7D/values
  *
  * @author Patrick Barsallo
  */
-class Values extends Linkers
+class Values extends BaseLinkersApi
 {
-    /**
-     * Base URI for linker values API
-     */
-    const URI = parent::URI . '/values';
-
-    /**
-     * @var string
-     */
-    private $linkerKey;
-
-    /**
-     * Create add-on values API instance
-     *
-     * @param HttpClient $httpClient
-     * @param string     $linkerKey
-     *
-     * @return void
-     */
-    public function __construct(HttpClient $httpClient, string $linkerKey)
-    {
-        parent::__construct($httpClient);
-        $this->linkerKey = $linkerKey;
-    }
-
     /**
      * Update value for linker key
      *
@@ -46,9 +19,9 @@ class Values extends Linkers
      *
      * @return array
      */
-    public function update(array $params) : array
+    public function update(array $params = []) : array
     {
-        return $this->put(self::URI, $params);
+        return $this->put("{$this->linkersUri}/values", $params);
     }
 
     /**
@@ -58,9 +31,9 @@ class Values extends Linkers
      *
      * @return array
      */
-    public function create(array $params) : array
+    public function create(array $params = []) : array
     {
-        return $this->post(self::URI, $params);
+        return $this->post("{$this->linkersUri}/values", $params);
     }
 
     /**
@@ -72,7 +45,7 @@ class Values extends Linkers
      */
     public function all(array $params = []) : array
     {
-        return $this->get(self::URI, $params);
+        return $this->get("{$this->linkersUri}/values", $params);
     }
 
     /**
@@ -84,6 +57,6 @@ class Values extends Linkers
      */
     public function remove(array $params = []) : array
     {
-        return $this->delete(self::URI, $params);
+        return $this->delete("{$this->linkersUri}/values", $params);
     }
 }

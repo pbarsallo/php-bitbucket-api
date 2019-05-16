@@ -4,46 +4,74 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User;
 
-class BranchRestrictions
+/**
+ * Repository Branch Restrictions API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/branch-restrictions
+ *
+ * @author Patrick Barsallo
+ */
+class BranchRestrictions extends BaseUserApi
 {
     /**
-     * @var string
+     * Create branch restriction rule
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
+    public function create(array $params = []) : array
+    {
+        return $this->post("{$this->userRepositoryUri}/branch-restrictions", $params);
+    }
 
     /**
-     * @var string
+     * List all branch restrictions for repository
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function all(array $params = []) : array
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
+        return $this->get("{$this->userRepositoryUri}/branch-restrictions", $params);
     }
 
-    public function create(array $params)
+    /**
+     * Update an existing branch restriction rule
+     *
+     * @param string $id
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function update(string $id, array $params = []) : array
     {
-
+        return $this->put("{$this->userRepositoryUri}/branch-restrictions/{$id}", $params);
     }
 
-    public function all(array $params = [])
+    /**
+     * Show specific branch restriction
+     *
+     * @param string $id
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $id, array $params = []) : array
     {
-
+        return $this->get("{$this->userRepositoryUri}/branch-restrictions/{$id}", $params);
     }
 
-    public function update(string $id, array $params)
+    /**
+     * Remove a specific branch restriction
+     *
+     * @param string $id
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $id, array $params = []) : array
     {
-
-    }
-
-    public function show(string $id, array $params = [])
-    {
-
-    }
-
-    public function remove(string $id, array $params = [])
-    {
-
+        return $this->delete("{$this->userRepositoryUri}/branch-restrictions/{$id}", $params);
     }
 }

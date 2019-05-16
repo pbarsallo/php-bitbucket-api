@@ -4,31 +4,15 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Issues;
 
-class Import
+class Import extends BaseIssuesApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->issuesUri}/import", $params);
     }
 
     public function show(array $params = [])
     {
-
+        return $this->get("{$this->issuesUri}/import", $params);
     }
 }

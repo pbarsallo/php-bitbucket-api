@@ -4,31 +4,34 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\BranchingModel;
 
-class Settings
+/**
+ * Branching model settings class
+ *
+ * @author Patrick Barsallo
+ */
+class Settings extends BaseBranchingModelApi
 {
     /**
-     * @var string
+     * Update branching model configuration for a specific repository
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
+    public function update(array $params = [])
+    {
+        return $this->put("{$this->branchingModelUri}/settings", $params);
+    }
 
     /**
-     * @var string
+     * Get branching model configuration for a specific repository
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function update(array $params)
-    {
-
-    }
-
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->branchingModelUri}/settings", $params);
     }
 }

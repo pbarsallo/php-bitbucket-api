@@ -4,42 +4,20 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Commit\Statuses;
 
-class Build
+class Build extends BaseStatusesApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $node;
-
-    public function __construct(string $username, string $repoSlug, string $node)
-    {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-        $this->node = $node;
-    }
-
     public function create(array $params)
     {
-
+        return $this->post("{$this->statusesUri}/build", $params);
     }
 
     public function update(string $key, array $params)
     {
-
+        return $this->put("{$this->statusesUri}/build/{$key}", $params);
     }
 
     public function show(string $key, array $params = [])
     {
-
+        return $this->get("{$this->statusesUri}/build/{$key}", $params);
     }
 }

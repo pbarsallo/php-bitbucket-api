@@ -4,31 +4,15 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Issues;
 
-class Export
+class Export extends BaseIssuesApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->issuesUri}/export", $params);
     }
 
     public function show(string $repositoryName, string $taskId, array $params = [])
     {
-
+        return $this->get("{$this->issuesUri}/export/{$repositoryName}-issues-{$taskId}.zip", $params);
     }
 }

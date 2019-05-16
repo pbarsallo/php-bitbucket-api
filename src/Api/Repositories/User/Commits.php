@@ -4,38 +4,25 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User;
 
-use Bitbucket\Api\Repositories\User\Commits\Revision;
-
-class Commits
+class Commits extends BaseUserApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->userRepositoryUri}/commits", $params);
     }
 
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->userRepositoryUri}/commits", $params);
     }
 
-    public function revision(string $revision)
+    public function postRevision(string $revision, array $params = [])
     {
-        return new Revision($this->username, $this->repoSlug, $revision);
+        return $this->post("{$this->userRepositoryUri}/commits/{$revision}", $params);
+    }
+
+    public function getRevision(string $revision, array $params = [])
+    {
+        return $this->get("{$this->userRepositoryUri}/commits/{$revision}", $params);
     }
 }

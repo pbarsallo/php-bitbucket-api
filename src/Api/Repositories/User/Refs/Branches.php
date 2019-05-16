@@ -4,41 +4,25 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\User\Refs;
 
-class Branches
+class Branches extends BaseRefsApi
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $username, string $repoSlug)
+    public function create(array $params = [])
     {
-        $this->username = $username;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function create(array $params)
-    {
-
+        return $this->post("{$this->refsUri}/branches", $params);
     }
 
     public function all(array $params = [])
     {
-
+        return $this->get("{$this->refsUri}/branches", $params);
     }
 
     public function show(string $name, array $params = [])
     {
-
+        return $this->get("{$this->refsUri}/branches/{$name}", $params);
     }
 
     public function remove(string $name, array $params = [])
     {
-
+        return $this->delete("{$this->refsUri}/branches/{$name}", $params);
     }
 }
