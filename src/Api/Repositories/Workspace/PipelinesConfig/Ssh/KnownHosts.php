@@ -4,42 +4,47 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Ssh;
 
-class KnownHosts
+/**
+ * Workspace Repository Pipelines Config SSH Known Hosts API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines_config/ssh/known_hosts
+ *
+ * @author Patrick Barsallo
+ */
+class KnownHosts extends BaseSshApi
 {
     /**
-     * @var string
+     * Update repository level known host
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function update(string $knownHostUuid, array $params = []) : array
+    {
+        return $this->put("{$this->sshUri}/known_hosts/{$knownHostUuid}", $params);
+    }
 
     /**
-     * @var string
+     * Get repository level known host
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $repoSlug;
+    public function show(string $knownHostUuid, array $params = []) : array
+    {
+        return $this->put("{$this->sshUri}/known_hosts/{$knownHostUuid}", $params);
+    }
 
     /**
-     * @var string
+     * Remove known host
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $knownHostUuid;
-
-    public function __construct(string $workspace, string $repoSlug, string $knownHostUuid)
+    public function remove(string $knownHostUuid, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-        $this->knownHostUuid = $knownHostUuid;
-    }
-
-    public function update(array $params)
-    {
-
-    }
-
-    public function show(array $params = [])
-    {
-
-    }
-
-    public function remove(array $params = [])
-    {
-
+        return $this->put("{$this->sshUri}/known_hosts/{$knownHostUuid}", $params);
     }
 }

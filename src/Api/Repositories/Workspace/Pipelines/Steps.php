@@ -4,39 +4,38 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\Pipelines;
 
-use Bitbucket\Api\Repositories\Workspace\Pipelines\Steps\Log;
+use Bitbucket\Api\Repositories\Workspace\Pipelines\Step\Log;
 
-class Steps
+/**
+ * Workspace Repository Pipeline Steps API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines/%7Bpipeline_uuid%7D/steps
+ *
+ * @author Patrick Barsallo
+ */
+class Steps extends BasePipelinesApi
 {
     /**
-     * @var string
+     * Get a given step of a pipeline
+     *
+     * @param string $stepUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $workspace;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $pipelineUuid;
-
-    public function __construct(string $workspace, string $repoSlug, string $pipelineUuid)
+    public function show(string $stepUuid, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-        $this->pipelineUuid = $pipelineUuid;
+        return $this->get("{$this->pipelineUri}/steps/{$stepUuid}", $params);
     }
 
-    public function show(string $stepUuid, array $params = [])
+    /**
+     * Get pipeline step log API
+     *
+     * @param string $stepUuid
+     *
+     * @return Log
+     */
+    public function log(string $stepUuid) : Log
     {
-
-    }
-
-    public function log(string $stepUuid)
-    {
-        return new Log($this->workspace, $this->repoSlug, $this->pipelineUuid, $stepUuid);
+        return new Log($stepUuid);
     }
 }

@@ -12,40 +12,95 @@ use Bitbucket\Api\Repositories\Workspace\PipelinesConfig;
 use Bitbucket\Api\Repositories\Workspace\Properties;
 use Bitbucket\Api\Repositories\Workspace\PullRequests;
 
+/**
+ * Repositories Workspace API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D
+ *
+ * @author Patrick Barsallo
+ */
 class Workspace extends BaseRepositoriesApi
 {
-    public function commit(string $repoSlug)
+    /**
+     * Get workspace repository commit API
+     *
+     * @param string $repoSlug
+     *
+     * @return Commit
+     */
+    public function commit(string $repoSlug) : Commit
     {
-        return new Commit($this->workspace, $repoSlug);
+        return new Commit($repoSlug);
     }
 
-    public function deployments(string $repoSlug)
+    /**
+     * Get workspace repository deployments API
+     *
+     * @param string $repoSlug
+     *
+     * @return Deployments
+     */
+    public function deployments(string $repoSlug) : Deployments
     {
-        return new Deployments($this->workspace, $repoSlug);
+        return new Deployments($repoSlug);
     }
 
-    public function environments(string $repoSlug)
+    /**
+     * Get workspace repository environments API
+     *
+     * @param string $repoSlug
+     *
+     * @return Environments
+     */
+    public function environments(string $repoSlug) : Environments
     {
-        return new Environments($this->workspace, $repoSlug);
+        return new Environments($repoSlug);
     }
 
-    public function pipelines(string $repoSlug)
+    /**
+     * Get workspace repository pipelines API
+     *
+     * @param string $repoSlug
+     *
+     * @return Pipelines
+     */
+    public function pipelines(string $repoSlug) : Pipelines
     {
-        return new Pipelines($this->workspace, $repoSlug);
+        return new Pipelines($repoSlug);
     }
 
-    public function pipelinesConfig(string $repoSlug)
+    /**
+     * Get workspace repository pipelines config API
+     *
+     * @param string $repoSlug
+     *
+     * @return PipelinesConfig
+     */
+    public function pipelinesConfig(string $repoSlug) : PipelinesConfig
     {
-        return new PipelinesConfig($this->workspace, $repoSlug);
+        return new PipelinesConfig($repoSlug);
     }
 
-    public function properties(string $repoSlug)
+    /**
+     * Get workspace repository properties API
+     *
+     * @param string $repoSlug
+     *
+     * @return Properties
+     */
+    public function properties(string $repoSlug) : Properties
     {
-        return new Properties($this->workspace, $repoSlug);
+        return new Properties($repoSlug);
     }
 
-    public function pullRequests(string $repoSlug)
+    /**
+     * Get workspace repository pull requests API
+     *
+     * @param string $repoSlug
+     *
+     * @return PullRequests
+     */
+    public function pullRequests(string $repoSlug) : PullRequests
     {
-        return new PullRequests($this->workspace, $repoSlug);
+        return new PullRequests($repoSlug);
     }
 }

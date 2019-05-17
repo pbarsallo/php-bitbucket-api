@@ -4,37 +4,53 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace;
 
-class Properties
+/**
+ * Workspace Repository Properties API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/properties
+ *
+ * @author Patrick Barsallo
+ */
+class Properties extends BaseWorkspaceApi
 {
     /**
-     * @var string
+     * Update application property value
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function update(string $appKey, string $propertyName, array $params = []) : array
+    {
+        return $this->put("{$this->workspaceRepositoryUri}/properties/{$appKey}/{$propertyName}", $params);
+    }
 
     /**
-     * @var string
+     * Delete application property value
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function remove(string $appKey, string $propertyName, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
+        return $this->delete("{$this->workspaceRepositoryUri}/properties/{$appKey}/{$propertyName}", $params);
     }
 
-    public function update(string $appKey, string $propertyName, array $params)
+    /**
+     * Get application property value
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $appKey, string $propertyName, array $params = []) : array
     {
-
+        return $this->get("{$this->workspaceRepositoryUri}/properties/{$appKey}/{$propertyName}", $params);
     }
-
-    public function remove(string $appKey, string $propertyName, array $params = [])
-    {
-
-    }
-
-    public function show(string $appKey, string $propertyName, array $params = [])
-    {
-
-    }
-
 }

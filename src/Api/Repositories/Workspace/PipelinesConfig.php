@@ -9,51 +9,75 @@ use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Schedules;
 use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Schedules\Ssh;
 use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Variables;
 
-class PipelinesConfig
+/**
+ * Workspace Repository Pipelines Config API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines_config
+ *
+ * @author Patrick Barsallo
+ */
+class PipelinesConfig extends BaseWorkspaceApi
 {
     /**
-     * @var string
+     * Update pipelines config for repository
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function update(array $params = []) : array
+    {
+        return $this->put("{$this->workspaceRepositoryUri}/pipelines_config", $params);
+    }
 
     /**
-     * @var string
+     * Get pipelines config for repository
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function show(array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
+        return $this->get("{$this->workspaceRepositoryUri}/pipelines_config", $params);
     }
 
-    public function update(array $params)
+    /**
+     * Get pipelines config build number API
+     *
+     * @return BuildNumber
+     */
+    public function buildNumber() : BuildNumber
     {
-
+        return new BuildNumber;
     }
 
-    public function show(array $params = [])
+    /**
+     * Get pipelines config schedules API
+     *
+     * @return Schedules
+     */
+    public function schedules() : Schedules
     {
-
+        return new Schedules;
     }
 
-    public function buildNumber()
+    /**
+     * Get pipelines config SSH API
+     *
+     * @return Ssh
+     */
+    public function ssh() : Ssh
     {
-        return new BuildNumber($this->workspace, $this->repoSlug);
+        return new Ssh;
     }
 
-    public function schedules()
+    /**
+     * Get pipelines config variables API
+     *
+     * @return Variables
+     */
+    public function variables() : Variables
     {
-        return new Schedules($this->workspace, $this->repoSlug);
-    }
-
-    public function ssh()
-    {
-        return new Ssh($this->workspace, $this->repoSlug);
-    }
-
-    public function variables()
-    {
-        return new Variables($this->workspace, $this->repoSlug);
+        return new Variables;
     }
 }

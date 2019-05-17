@@ -6,36 +6,49 @@ namespace Bitbucket\Api\Repositories\Workspace;
 
 use Bitbucket\Api\Repositories\Workspace\Pipelines\Steps;
 
-class Pipelines
+/**
+ * Workspace Repository Pipelines API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines
+ *
+ * @author Patrick Barsallo
+ */
+class Pipelines extends BaseWorkspaceApi
 {
     /**
-     * @var string
+     * Get a pipeline
+     *
+     * @param string $pipelineUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function show(string $pipelineUuid, array $params = []) : array
+    {
+        return $this->get("{$this->workspaceRepositoryUri}/pipeliunes/{$pipelineUuid}", $params);
+    }
 
     /**
-     * @var string
+     * Stop a pipeline
+     *
+     * @param string $pipelineUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function stop(string $pipelineUuid, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
+        return $this->post("{$this->workspaceRepositoryUri}/pipeliunes/{$pipelineUuid}/stopPipeline", $params);
     }
 
-    public function show(string $pipelineUuid, array $params = [])
+    /**
+     * Get workspace repository pipeline steps API
+     *
+     * @param string $pipelineUuid
+     *
+     * @return Steps
+     */
+    public function steps(string $pipelineUuid) : Steps
     {
-
-    }
-
-    public function steps(string $pipelineUuid)
-    {
-        return new Steps($this->workspace, $this->repoSlug, $pipelineUuid);
-    }
-
-    public function stop(string $pipelineUuid, array $params = [])
-    {
-
+        return new Steps($pipelineUuid);
     }
 }

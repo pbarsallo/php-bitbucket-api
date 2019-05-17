@@ -6,26 +6,23 @@ namespace Bitbucket\Api\Repositories\Workspace;
 
 use Bitbucket\Api\Repositories\Workspace\PullRequests\Properties;
 
-class PullRequests
+/**
+ * Workspace Repository Pull Requests API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pullrequests
+ *
+ * @author Patrick Barsallo
+ */
+class PullRequests extends BaseWorkspaceApi
 {
     /**
-     * @var string
+     * Get repository pull requests API
+     *
+     * @param string $pullRequestId
+     *
+     * @return Properties
      */
-    private $workspace;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function properties(string $pullRequestId) : Properties
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function properties(string $pullRequestId)
-    {
-        return new Properties($this->workspace, $this->repoSlug, $pullRequestId);
+        return new Properties($pullRequestId);
     }
 }

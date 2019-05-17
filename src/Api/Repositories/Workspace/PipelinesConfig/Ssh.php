@@ -4,34 +4,35 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Schedules;
 
+use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\BasePipelinesConfigApi;
 use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Ssh\KeyPair;
 use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Ssh\KnownHosts;
 
-class Ssh
+/**
+ * Workspace Repostiory Pipelines Config SSH API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines_config/ssh
+ *
+ * @author Patrick Barsallo
+ */
+class Ssh extends BasePipelinesConfigApi
 {
     /**
-     * @var string
+     * Get SSH key pair API
+     *
+     * @return KeyPair
      */
-    private $workspace;
+    public function keyPair() : KeyPair
+    {
+        return new KeyPair;
+    }
 
     /**
-     * @var string
+     * Get SSH known hosts API
+     *
+     * @return KnownHosts
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function knownHosts() : KnownHosts
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function keyPair()
-    {
-        return new KeyPair($this->workspace, $this->repoSlug);
-    }
-
-    public function knownHosts(string $knownHostUuid)
-    {
-        return new KnownHosts($this->workspace, $this->repoSlug, $knownHostUuid);
+        return new KnownHosts;
     }
 }

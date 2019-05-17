@@ -4,32 +4,23 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\Commit;
 
-class PullRequests
+/**
+ * Workspace Repository Commit Pull Requests API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/commit/%7Bcommit%7D/pullrequests
+ *
+ * @author Patrick Barsallo
+ */
+class PullRequests extends BaseCommitApi
 {
     /**
-     * @var string
+     * List pull requests as part of which commit was reviewed
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $workspace;
-
-    /**
-     * @var string
-     */
-    private $repoSlug;
-
-    /**
-     * @var string
-     */
-    private $commit;
-
-    public function __construct(string $workspace, string $repoSlug, string $commit)
+    public function all(array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-        $this->commit = $commit;
-    }
-
-    public function all(array $params = [])
-    {
-
+        return $this->get("{$this->commitUri}/pullrequests", $params);
     }
 }

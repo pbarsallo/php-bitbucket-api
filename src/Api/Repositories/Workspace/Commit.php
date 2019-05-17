@@ -7,31 +7,35 @@ namespace Bitbucket\Api\Repositories\Workspace;
 use Bitbucket\Api\Repositories\Workspace\Commit\Properties;
 use Bitbucket\Api\Repositories\Workspace\Commit\PullRequests;
 
-class Commit
+/**
+ * Workspace Repository Commit API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/commit
+ *
+ * @author Patrick Barsallo
+ */
+class Commit extends BaseWorkspaceApi
 {
     /**
-     * @var string
+     * Get workspace repositories properties API
+     *
+     * @param string $commit
+     *
+     * @return Properties
      */
-    private $workspace;
+    public function properties(string $commit) : Properties
+    {
+        return new Properties($commit);
+    }
 
     /**
-     * @var string
+     * Get workspace repositories pull requests API
+     *
+     * @param string $commit
+     *
+     * @return PullRequests
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function pullRequests(string $commit) : PullRequests
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
-    }
-
-    public function properties(string $commit)
-    {
-        return new Properties($this->workspace, $this->repoSlug, $commit);
-    }
-
-    public function pullRequests(string $commit)
-    {
-        return new PullRequests($this->workspace, $this->repoSlug, $commit);
+        return new PullRequests($commit);
     }
 }

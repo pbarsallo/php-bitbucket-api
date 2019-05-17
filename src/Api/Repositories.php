@@ -66,6 +66,6 @@ class Repositories extends BaseApi
      */
     public function workspace(string $workspace) : Workspace
     {
-        return new Workspace($this->httpClient, $workspace);
+        return new Workspace($workspace);
     }
 }

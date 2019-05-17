@@ -4,37 +4,50 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\PipelinesConfig;
 
-class Variables
+/**
+ * Workspace Repository Pipelines Config Variables API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines_config/variables
+ *
+ * @author Patrick Barsallo
+ */
+class Variables extends BasePipelinesConfigApi
 {
     /**
-     * @var string
+     * Update repository level variable
+     *
+     * @param string $variableUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function update(string $variableUuid, array $params = []) : array
+    {
+        return $this->put("{$this->pipelinesConfigUri}/variables/{$variableUuid}", $params);
+    }
 
     /**
-     * @var string
+     * Get repository level variable
+     *
+     * @param string $variableUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function show(string $variableUuid, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
+        return $this->get("{$this->pipelinesConfigUri}/variables/{$variableUuid}", $params);
     }
 
-    public function update(string $variableUuid, array $params)
+    /**
+     * Delete repository level variable
+     *
+     * @param string $variableUuid
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $variableUuid, array $params = []) : array
     {
-
+        return $this->delete("{$this->pipelinesConfigUri}/variables/{$variableUuid}", $params);
     }
-
-    public function show(string $variableUuid, array $params = [])
-    {
-
-    }
-
-    public function remove(string $variableUuid, array $params = [])
-    {
-
-    }
-
 }

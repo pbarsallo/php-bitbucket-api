@@ -6,41 +6,62 @@ namespace Bitbucket\Api\Repositories\Workspace\PipelinesConfig;
 
 use Bitbucket\Api\Repositories\Workspace\PipelinesConfig\Schedules\Executions;
 
-class Schedules
+/**
+ * Workspace Repository Pipelines Config Schedules API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/pipelines_config/schedules
+ *
+ * @author Patrick Barsallo
+ */
+class Schedules extends BasePipelinesConfigApi
 {
     /**
-     * @var string
+     * Update a schedule
+     *
+     * @param string $scheduleUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $workspace;
+    public function update(string $scheduleUuid, array $params = []) : array
+    {
+        return $this->put("{$this->pipelinesConfigUri}/schedules/{$scheduleUuid}", $params);
+    }
 
     /**
-     * @var string
+     * Get a schedule
+     *
+     * @param string $scheduleUuid
+     * @param array  $params
+     *
+     * @return array
      */
-    private $repoSlug;
-
-    public function __construct(string $workspace, string $repoSlug)
+    public function show(string $scheduleUuid, array $params = []) : array
     {
-        $this->workspace = $workspace;
-        $this->repoSlug = $repoSlug;
+        return $this->get("{$this->pipelinesConfigUri}/schedules/{$scheduleUuid}", $params);
     }
 
-    public function update(string $scheduleUuid, array $params)
+    /**
+     * Remove a schedule
+     *
+     * @param string $scheduleUuid
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $scheduleUuid, array $params = []) : array
     {
-
+        return $this->delete("{$this->pipelinesConfigUri}/schedules/{$scheduleUuid}", $params);
     }
 
-    public function show(string $scheduleUuid, array $params = [])
+    /**
+     * Get pipelines config schedule executions API
+     *
+     * @param string $scheduleUuid
+     *
+     * @return Executions
+     */
+    public function executions(string $scheduleUuid) : Executions
     {
-
-    }
-
-    public function remove(string $scheduleUuid, array $params = [])
-    {
-
-    }
-
-    public function executions(string $scheduleUuid)
-    {
-        return new Executions($this->workspace, $this->repoSlug, $scheduleUuid);
+        return new Executions($scheduleUuid);
     }
 }
