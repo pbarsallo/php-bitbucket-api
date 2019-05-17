@@ -4,26 +4,24 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Snippets\User;
 
-class Patch
+/**
+ * User Snippet Patch API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/snippets/%7Busername%7D/%7Bencoded_id%7D/%7Brevision%7D/patch
+ *
+ * @author Patrick Barsallo
+ */
+class Patch extends BaseUserApi
 {
     /**
-     * @var string
+     * Get patch of snippet at specified commit
+     *
+     * @param string $revision
+     * @param array  $params
+     *
+     * @return array
      */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $encodedId;
-
-    public function __construct(string $username, string $encodedId)
-    {
-        $this->username = $username;
-        $this->encodedId = $encodedId;
-    }
-
     public function show(string $revision, array $params = [])
     {
-
+        return $this->get("{$this->userSnippetUri}/{$revision}/patch", $params);
     }
 }

@@ -4,47 +4,74 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Snippets\User;
 
-class Comments
+/**
+ * User Snippet Comments API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/snippets/%7Busername%7D/%7Bencoded_id%7D/comments
+ *
+ * @author Patrick Barsallo
+ */
+class Comments extends BaseUserApi
 {
     /**
-     * @var string
+     * Comment on a snippet
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
+    public function create(array $params = []) : array
+    {
+        return $this->post("{$this->userSnippetUri}/comments", $params);
+    }
 
     /**
-     * @var string
+     * List all comments on a snippet
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $encodedId;
-
-    public function __construct(string $username, string $encodedId)
+    public function all(array $params = []) : array
     {
-        $this->username = $username;
-        $this->encodedId = $encodedId;
+        return $this->get("{$this->userSnippetUri}/comments", $params);
     }
 
-    public function create(array $params)
+    /**
+     * Update a comment on a snippet
+     *
+     * @param string $commentId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function update(string $commentId, array $params = []) : array
     {
-
+        return $this->put("{$this->userSnippetUri}/comments/{$commentId}", $params);
     }
 
-    public function all(array $params = [])
+    /**
+     * Get a specific comment on a snippet
+     *
+     * @param string $commentId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $commentId, array $params = []) : array
     {
-
+        return $this->get("{$this->userSnippetUri}/comments/{$commentId}", $params);
     }
 
-    public function update(string $commentId, array $params)
+    /**
+     * Delete a comment from a snippet
+     *
+     * @param string $commentId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $commentId, array $params = []) : array
     {
-
+        return $this->delete("{$this->userSnippetUri}/comments/{$commentId}", $params);
     }
-
-    public function show(string $commentId, array $params = [])
-    {
-
-    }
-
-    public function remove(string $commentId, array $params = [])
-    {
-
-    }
-
 }

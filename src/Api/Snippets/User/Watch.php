@@ -4,36 +4,47 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Snippets\User;
 
-class Watch
+/**
+ * User Snippet Watch API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/snippets/%7Busername%7D/%7Bencoded_id%7D/watch
+ *
+ * @author Patrick Barsallo
+ */
+class Watch extends BaseUserApi
 {
     /**
-     * @var string
+     * Watch a snippet
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
+    public function update(array $params = []) : array
+    {
+        return $this->put("{$this->userSnippetUri}/watch", $params);
+    }
 
     /**
-     * @var string
+     * Check watch status for a snippet
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $encodedId;
-
-    public function __construct(string $username, string $encodedId)
+    public function show(array $params = []) : array
     {
-        $this->username = $username;
-        $this->encodedId = $encodedId;
+        return $this->get("{$this->userSnippetUri}/watch", $params);
     }
 
-    public function update(array $params = [])
+    /**
+     * Stop watching a snippet
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function remove(array $params = []) : array
     {
-
-    }
-
-    public function show(array $params = [])
-    {
-
-    }
-
-    public function remove(array $params = [])
-    {
-
+        return $this->delete("{$this->userSnippetUri}/watch", $params);
     }
 }

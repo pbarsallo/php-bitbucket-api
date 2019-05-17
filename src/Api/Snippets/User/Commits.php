@@ -4,31 +4,36 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Snippets\User;
 
-class Commits
+/**
+ * User Snippet Commits API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/snippets/%7Busername%7D/%7Bencoded_id%7D/commits
+ *
+ * @author Patrick Barsallo
+ */
+class Commits extends BaseUserApi
 {
     /**
-     * @var string
+     * List all commits made to snippet
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
+    public function all(array $params = []) : array
+    {
+        return $this->get("{$this->userSnippetUri}/commits", $params);
+    }
 
     /**
-     * @var string
+     * Get specific commit to snippet
+     *
+     * @param string $revision
+     * @param array  $params
+     *
+     * @return array
      */
-    private $encodedId;
-
-    public function __construct(string $username, string $encodedId)
+    public function show(string $revision, array $params = []) : array
     {
-        $this->username = $username;
-        $this->encodedId = $encodedId;
-    }
-
-    public function all(array $params = [])
-    {
-
-    }
-
-    public function show(string $revision, array $params = [])
-    {
-
+        return $this->get("{$this->userSnippetUri}/commits/{$revision}", $params);
     }
 }

@@ -13,65 +13,170 @@ use Bitbucket\Api\Snippets\User\Patch;
 use Bitbucket\Api\Snippets\User\Watch;
 use Bitbucket\Api\Snippets\User\Watchers;
 
-class User
+/**
+ * User Snippets API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/snippets/%7Busername%7D
+ *
+ * @author Patrick Barsallo
+ */
+class User extends BaseSnippetsApi
 {
     /**
-     * @var string
+     * Create new snippet under specified user account
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function create(array $params = []) : array
     {
-        $this->username = $username;
+        return $this->post($this->userSnippetsUri, $params);
     }
 
-    public function create(array $params)
-    {
-
-    }
-
+    /**
+     * Get snippets owned by specific user
+     *
+     * @param array $params
+     *
+     * @return array
+     */
     public function all(array $params = [])
     {
-
+        return $this->get($this->userSnippetsUri, $params);
     }
 
-    public function comments(string $encodedId)
+    /**
+     * Update a specific snippet
+     *
+     * @param string $encodedId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function update(string $encodedId, array $params = []) : array
     {
-        return new Comments($this->username, $encodedId);
+        return $this->put("{$this->userSnippetsUri}/{$encodedId}", $params);
     }
 
-    public function commits(string $encodedId)
+    /**
+     * Get a specific snippet
+     *
+     * @param string $encodedId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $encodedId, array $params = []) : array
     {
-        return new Commits($this->username, $encodedId);
+        return $this->get("{$this->userSnippetsUri}/{$encodedId}", $params);
     }
 
-    public function files(string $encodedId)
+    /**
+     * Delete a specific snippet
+     *
+     * @param string $encodedId
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $encodedId, array $params = []) : array
     {
-        return new Files($this->username, $encodedId);
+        return $this->delete("{$this->userSnippetsUri}/{$encodedId}", $params);
     }
 
-    public function watch(string $encodedId)
+    /**
+     * Get snippets comments API
+     *
+     * @param string $encodedId
+     *
+     * @return Comments
+     */
+    public function comments(string $encodedId) : Comments
     {
-        return new Watch($this->username, $encodedId);
+        return new Comments($encodedId);
     }
 
-    public function watchers(string $encodedId)
+    /**
+     * Get snippets commits API
+     *
+     * @param string $encodedId
+     *
+     * @return Commits
+     */
+    public function commits(string $encodedId) : Commits
     {
-        return new Watchers($this->username, $encodedId);
+        return new Commits($encodedId);
     }
 
-    public function node(string $encodedId)
+    /**
+     * Get snippets files API
+     *
+     * @param string $encodedId
+     *
+     * @return Files
+     */
+    public function files(string $encodedId) : Files
     {
-        return new Node($this->username, $encodedId);
+        return new Files($encodedId);
     }
 
-    public function diff(string $encodedId)
+    /**
+     * Get snippets watch API
+     *
+     * @param string $encodedId
+     *
+     * @return Watch
+     */
+    public function watch(string $encodedId) : Watch
     {
-        return new Diff($this->username, $encodedId);
+        return new Watch($encodedId);
     }
 
-    public function patch(string $encodedId)
+    /**
+     * Get snippets watchers API
+     *
+     * @param string $encodedId
+     *
+     * @return Watchers
+     */
+    public function watchers(string $encodedId) : Watchers
     {
-        return new Patch($this->username, $encodedId);
+        return new Watchers($encodedId);
+    }
+
+    /**
+     * Get snippets node API
+     *
+     * @param string $encodedId
+     *
+     * @return Node
+     */
+    public function node(string $encodedId) : Node
+    {
+        return new Node($encodedId);
+    }
+
+    /**
+     * Get snippets diff API
+     *
+     * @param string $encodedId
+     *
+     * @return Diff
+     */
+    public function diff(string $encodedId) : Diff
+    {
+        return new Diff($encodedId);
+    }
+
+    /**
+     * Get snippets patch API
+     *
+     * @param string $encodedId
+     *
+     * @return Patch
+     */
+    public function patch(string $encodedId) : Patch
+    {
+        return new Patch($encodedId);
     }
 }
