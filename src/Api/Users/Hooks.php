@@ -4,40 +4,74 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Users;
 
-class Hooks
+/**
+ * Users Hooks API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/users/%7Busername%7D/hooks
+ *
+ * @author Patrick Barsallo
+ */
+class Hooks extends BaseUsersApi
 {
     /**
-     * @var string
+     * Create new webhook for user
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function create(array $params = []) : array
     {
-        $this->username = $username;
+        return $this->post("{$this->userUri}/hooks", $params);
     }
 
-    public function create(array $params)
+    /**
+     * List all webhooks for user
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function all(array $params = []) : array
     {
-
+        return $this->get("{$this->userUri}/hooks", $params);
     }
 
-    public function all(array $params = [])
+    /**
+     * Update specific webhook for user
+     *
+     * @param string $uid
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function update(string $uid, array $params = []) : array
     {
-
+        return $this->put("{$this->userUri}/hooks/{$uid}", $params);
     }
 
-    public function update(string $uid, array $params)
+    /**
+     * Get specific webhook for user
+     *
+     * @param string $uid
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $uid, array $params = []) : array
     {
-
+        return $this->get("{$this->userUri}/hooks/{$uid}", $params);
     }
 
-    public function show(string $uid, array $params = [])
+    /**
+     * Delete specific webhook for user
+     *
+     * @param string $uid
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $uid, array $params = []) : array
     {
-
-    }
-
-    public function remove(string $uid, array $params = [])
-    {
-
+        return $this->delete("{$this->userUri}/hooks/{$uid}", $params);
     }
 }

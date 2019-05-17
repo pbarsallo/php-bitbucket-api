@@ -4,25 +4,35 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Users;
 
-class SshKeys
+/**
+ * Users SSH Keys API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/users/%7Busername%7D/ssh-keys
+ *
+ * @author Patrick Barsallo
+ */
+class SshKeys extends BaseUsersApi
 {
     /**
-     * @var string
+     * Create new SSH key for user
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function create(array $params) : array
     {
-        $this->username = $username;
+        return $this->post("{$this->userUri}/ssh-keys", $params);
     }
 
-    public function create(array $params)
+    /**
+     * List all SSH keys for user
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function all(array $params = []) : array
     {
-
-    }
-
-    public function all(array $params = [])
-    {
-
+        return $this->get("{$this->userUri}/ssh-keys", $params);
     }
 }

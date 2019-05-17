@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Users;
 
-class Following
+/**
+ * Users Following API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/users/%7Busername%7D/following
+ *
+ * @author Patrick Barsallo
+ */
+class Following extends BaseUsersApi
 {
     /**
-     * @var string
+     * List accounts that the user is following
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function all(array $params = []) : array
     {
-        $this->username = $username;
-    }
-
-    public function all(array $params = [])
-    {
-
+        return $this->get("{$this->userUri}/following", $params);
     }
 }

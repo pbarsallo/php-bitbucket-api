@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Users;
 
-class Search
+/**
+ * Users Search API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/users/%7Busername%7D/search
+ *
+ * @author Patrick Barsallo
+ */
+class Search extends BaseUsersApi
 {
     /**
-     * @var string
+     * Search for code in user's repositories
+     *
+     * @param array $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function all(array $params = []) : array
     {
-        $this->username = $username;
-    }
-
-    public function all(array $params = [])
-    {
-
+        return $this->get("{$this->userUri}/search/code", $params);
     }
 }

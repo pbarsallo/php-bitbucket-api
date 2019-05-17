@@ -4,31 +4,53 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Users;
 
-class Properties
+/**
+ * Users Properties API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/users/%7Busername%7D/properties
+ *
+ * @author Patrick Barsallo
+ */
+class Properties extends BaseUsersApi
 {
     /**
-     * @var string
+     * Update application property value stored against user
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
      */
-    private $username;
-
-    public function __construct(string $username)
+    public function update(string $appKey, string $propertyName, array $params = []) : array
     {
-        $this->username = $username;
+        return $this->put("{$this->userUri}/properties/{$appKey}/{$propertyName}", $params);
     }
 
-    public function update(string $appKey, string $propertyName, array $params)
+    /**
+     * Delete application property value stored against user
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function remove(string $appKey, string $propertyName, array $params = []) : array
     {
-
+        return $this->delete("{$this->userUri}/properties/{$appKey}/{$propertyName}", $params);
     }
 
-    public function remove(string $appKey, string $propertyName, array $params = [])
+    /**
+     * Get application property value stored against user
+     *
+     * @param string $appKey
+     * @param string $propertyName
+     * @param array  $params
+     *
+     * @return array
+     */
+    public function show(string $appKey, string $propertyName, array $params = []) : array
     {
-
+        return $this->get("{$this->userUri}/properties/{$appKey}/{$propertyName}", $params);
     }
-
-    public function show(string $appKey, string $propertyName, array $params = [])
-    {
-
-    }
-
 }
