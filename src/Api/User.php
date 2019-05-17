@@ -7,19 +7,47 @@ namespace Bitbucket\Api;
 use Bitbucket\Api\User\Emails;
 use Bitbucket\Api\User\Permissions;
 
+/**
+ * User API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/user
+ *
+ * @author Patrick Barsallo
+ */
 class User extends BaseApi
 {
-    public function show(array $params = [])
-    {
+    /**
+     * @var string
+     */
+    private $uri = '/user';
 
+    /**
+     * Get current user
+     *
+     * @param array $params
+     *
+     * @return array
+     */
+    public function show(array $params = []) : array
+    {
+        return $this->get($this->uri, $params);
     }
 
-    public function emails()
+    /**
+     * Get user emails API
+     *
+     * @return Emails
+     */
+    public function emails() : Emails
     {
         return new Emails;
     }
 
-    public function permissions()
+    /**
+     * Get user permissions API
+     *
+     * @return Permissions
+     */
+    public function permissions() : Permissions
     {
         return new Permissions;
     }

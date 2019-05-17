@@ -7,14 +7,30 @@ namespace Bitbucket\Api\User;
 use Bitbucket\Api\User\Permissions\Repositories;
 use Bitbucket\Api\User\Permissions\Teams;
 
-class Permissions
+/**
+ * User Permissions API Class
+ * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/user/permissions
+ *
+ * @author Patrick Barsallo
+ */
+class Permissions extends BaseUserApi
 {
-    public function repositories()
+    /**
+     * Get user repositories API
+     *
+     * @return Repositories
+     */
+    public function repositories() : Repositories
     {
         return new Repositories;
     }
 
-    public function teams()
+    /**
+     * Get user teams API
+     *
+     * @return Teams
+     */
+    public function teams() : Teams
     {
         return new Teams;
     }
