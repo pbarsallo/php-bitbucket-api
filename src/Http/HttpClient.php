@@ -54,7 +54,7 @@ abstract class HttpClient
      *
      * @return string
      */
-    abstract function authorizationHeader() : string;
+    abstract public function authorizationHeader() : string;
 
     /**
      * Set request verb

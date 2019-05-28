@@ -29,4 +29,3 @@ class BasePermissionsApi extends BaseUserApi
         $this->permissionsUri = "{$this->userUri}/permissions";
     }
 }
-

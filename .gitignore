@@ -5,3 +5,4 @@ phpcs.xml
 phpunit.xml
 index.php
 .idea/*
+.phpunit.result.cache

@@ -19,7 +19,7 @@ class Hooks extends BaseTeamsApi
      *
      * @return array
      */
-    public function create(array $params =[]) : array
+    public function create(array $params = []) : array
     {
         return $this->post("{$this->teamUri}/hooks", $params);
     }
@@ -44,7 +44,7 @@ class Hooks extends BaseTeamsApi
      *
      * @return array
      */
-    public function update(string $uid, array $params =[]) : array
+    public function update(string $uid, array $params = []) : array
     {
         return $this->put("{$this->teamUri}/hooks/{$uid}", $params);
     }

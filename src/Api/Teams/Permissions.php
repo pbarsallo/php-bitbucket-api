@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Teams;
 
-
 use Bitbucket\Api\Teams\Permissions\Repositories;
 
 /**
