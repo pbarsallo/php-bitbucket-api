@@ -20,7 +20,7 @@ class Events extends BaseUsersApi
      *
      * @return array
      */
-    public function create(string $eventKey, array $params = []) : array
+    public function fire(string $eventKey, array $params = []) : array
     {
         return $this->post("{$this->targetUserUri}/events/{$eventKey}", $params);
     }

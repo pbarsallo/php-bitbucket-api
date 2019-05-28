@@ -27,7 +27,7 @@ class Addon extends BaseApi
      *
      * @return array
      */
-    public function update(array $params = []) : array
+    public function configure(array $params = []) : array
     {
         return $this->put("{$this->uri}", $params);
     }
