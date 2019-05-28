@@ -23,7 +23,18 @@ $ composer require pbarsallo/php-bitbucket-api
 
 ## Usage
 
-See docs
+```php
+<?php
+use Bitbucket\Client;
+use Bitbucket\Http\OauthClient;
+
+$httpClient = new OauthClient('oauth_token');
+$bitbucket = new Client($httpClient);
+
+$pullRequestsForRepository = $bitbucket->repositories()->user('pbarsallo')->pullRequests('test_repo')->all();
+```
+
+See [docs](https://pbarsallo.github.io/php-bitbucket-api/) for detailed usage.
 
 ## License
 
