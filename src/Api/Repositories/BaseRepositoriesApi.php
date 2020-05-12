@@ -22,20 +22,20 @@ class BaseRepositoriesApi extends BaseApi
     /**
      * @var string
      */
-    protected $userRepositoriesUri;
+    protected $workspaceRepositoriesUri;
 
     /**
      * Create a new base repositories API instance
      *
      * @param HttpClient $httpClient
-     * @param string     $username
+     * @param string     $account
      *
      * @return void
      */
-    public function __construct(string $username)
+    public function __construct(string $account)
     {
         parent::__construct($this->httpClient);
-        $this->username = $username;
-        $this->userRepositoriesUri = "/repositories/{$username}";
+        $this->username = $account;
+        $this->workspaceRepositoriesUri = "/repositories/{$account}";
     }
 }

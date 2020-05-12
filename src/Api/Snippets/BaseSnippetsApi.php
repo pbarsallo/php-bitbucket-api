@@ -26,14 +26,14 @@ class BaseSnippetsApi extends BaseApi
     /**
      * Create new base snippets API instance
      *
-     * @param string $username
+     * @param string $account
      *
      * @return void
      */
-    public function __construct(string $username)
+    public function __construct(string $account)
     {
         parent::__construct($this->httpClient);
-        $this->username = $username;
-        $this->userSnippetsUri = "/snippets/{$username}";
+        $this->username = $account;
+        $this->userSnippetsUri = "/snippets/{$account}";
     }
 }

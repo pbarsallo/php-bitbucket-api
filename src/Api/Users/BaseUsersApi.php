@@ -21,13 +21,13 @@ class BaseUsersApi extends BaseApi
     /**
      * Create new base users API instance
      *
-     * @param string $username
+     * @param string $account
      *
      * @return void
      */
-    public function __construct(string $username)
+    public function __construct(string $account)
     {
         parent::__construct($this->httpClient);
-        $this->userUri = "/users/{$username}";
+        $this->userUri = "/users/{$account}";
     }
 }

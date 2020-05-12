@@ -7,7 +7,7 @@ namespace Bitbucket\Api\Repositories\Workspace\Commit;
 use Bitbucket\Api\Repositories\Workspace\BaseWorkspaceApi;
 
 /**
- * Base Workspace Repository Commit API Class
+ * Base User Repository Commit API Class
  *
  * @author Patrick Barsallo
  */
@@ -16,18 +16,24 @@ class BaseCommitApi extends BaseWorkspaceApi
     /**
      * @var string
      */
+    protected $node;
+
+    /**
+     * @var string
+     */
     protected $commitUri;
 
     /**
-     * Create new base commit API instance
+     * Create a new base commit API instance
      *
-     * @param string $commit
+     * @param string $node
      *
      * @return void
      */
-    public function __construct(string $commit)
+    public function __construct(string $node)
     {
         parent::__construct($this->repoSlug);
-        $this->commitUri = "{$this->workspaceRepositoryUri}/commit/{$commit}";
+        $this->node = $node;
+        $this->commitUri = "{$this->workspaceRepositoryUri}/commit/{$node}";
     }
 }

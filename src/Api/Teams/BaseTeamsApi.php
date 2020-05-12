@@ -26,14 +26,14 @@ class BaseTeamsApi extends BaseApi
     /**
      * Create new base user API instance
      *
-     * @param string $username
+     * @param string $account
      *
      * @return void
      */
-    public function __construct(string $username)
+    public function __construct(string $account)
     {
         parent::__construct($this->httpClient);
-        $this->username = $username;
-        $this->teamUri = "/teams/{$username}";
+        $this->username = $account;
+        $this->teamUri = "/teams/{$account}";
     }
 }

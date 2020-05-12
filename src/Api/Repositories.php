@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api;
 
-use Bitbucket\Api\Repositories\User;
 use Bitbucket\Api\Repositories\Workspace;
 
 /**
@@ -35,37 +34,25 @@ class Repositories extends BaseApi
     /**
      * List repositories for specific user
      *
-     * @param string $username
+     * @param string $account
      * @param array  $params
      *
      * @return array
      */
-    public function show(string $username, array $params = []) : array
+    public function show(string $account, array $params = []) : array
     {
-        return $this->get("{$this->repositoriesUri}/{$username}", $params);
+        return $this->get("{$this->repositoriesUri}/{$account}", $params);
     }
 
     /**
      * Get user repositories API
      *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function user(string $username) : User
-    {
-        return new User($username);
-    }
-
-    /**
-     * Get workspace repositories API
-     *
-     * @param string $workspace
+     * @param string $account
      *
      * @return Workspace
      */
-    public function workspace(string $workspace) : Workspace
+    public function user(string $account) : Workspace
     {
-        return new Workspace($workspace);
+        return new Workspace($account);
     }
 }

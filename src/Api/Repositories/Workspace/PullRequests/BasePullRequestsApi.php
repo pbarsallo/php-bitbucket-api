@@ -2,32 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Bitbucket\Api\Repositories\Workspace\PullRequests;
+namespace Bitbucket\Api\Repositories\User\PullRequests;
 
-use Bitbucket\Api\Repositories\Workspace\BaseWorkspaceApi;
+use Bitbucket\Api\Repositories\User\BaseUserApi;
 
 /**
- * Base Workspace Repository Pull Requests API Class
+ * Base User Repository Pull Requests API Class
  *
  * @author Patrick Barsallo
  */
-class BasePullRequestsApi extends BaseWorkspaceApi
+class BasePullRequestsApi extends BaseUserApi
 {
     /**
      * @var string
      */
-    protected $pullRequestUri;
+    protected $pullRequestsUri;
 
     /**
      * Create new base pull requests API instance
      *
-     * @param string $pullRequestId
-     *
      * @return void
      */
-    public function __construct(string $pullRequestId)
+    public function __construct()
     {
         parent::__construct($this->repoSlug);
-        $this->pullRequestUri = "{$this->workspaceRepositoryUri}/{$pullRequestId}";
+        $this->pullRequestsUri = "{$this->userRepositoryUri}/pullrequests";
     }
 }

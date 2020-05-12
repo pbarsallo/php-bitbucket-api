@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-A simple PHP package for interacting with the Bitbucket 2.0 API ([offical documentation](https://developer.atlassian.com/bitbucket/api/2/reference/)).
+A simple PHP package for interacting with the Bitbucket 2.0 API ([official documentation](https://developer.atlassian.com/bitbucket/api/2/reference/)).
 
 ## Requirements
 

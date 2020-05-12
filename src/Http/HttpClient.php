@@ -17,7 +17,7 @@ abstract class HttpClient
     /**
      * Bitbucket 2.0 API base URL
      */
-    const BASE_URL = 'https://api.bitbucket.org/2.0';
+    protected const BASE_URL = 'https://api.bitbucket.org/2.0';
 
     /**
      * @var string

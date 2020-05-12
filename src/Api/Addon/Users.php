@@ -7,7 +7,7 @@ namespace Bitbucket\Api\Addon;
 use Bitbucket\Api\Addon\Users\Events;
 
 /**
- * Add-On Events API Class
+ * Add-On API Class
  * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/addon/users
  *
  * @author Patrick Barsallo

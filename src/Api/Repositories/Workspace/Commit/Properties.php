@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Bitbucket\Api\Repositories\Workspace\Commit;
 
+use Bitbucket\Api\Repositories\Workspace\Commit\Properties\Property;
+
 /**
- * Workspace Repository Commit Properties API Class
+ * Repository Commit Properties API Class
  * @see https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/commit/%7Bcommit%7D/properties
  *
  * @author Patrick Barsallo
@@ -13,44 +15,14 @@ namespace Bitbucket\Api\Repositories\Workspace\Commit;
 class Properties extends BaseCommitApi
 {
     /**
-     * Update application property value stored against commit
+     * Get commit property API
      *
      * @param string $appKey
-     * @param string $propertyName
-     * @param array  $params
      *
-     * @return array
+     * @return Property
      */
-    public function update(string $appKey, string $propertyName, array $params = []) : array
+    public function property(string $appKey) : Property
     {
-        return $this->put("{$this->commitUri}/properties/{$appKey}/{$propertyName}", $params);
-    }
-
-    /**
-     * Remove application property value stored against commit
-     *
-     * @param string $appKey
-     * @param string $propertyName
-     * @param array  $params
-     *
-     * @return array
-     */
-    public function remove(string $appKey, string $propertyName, array $params = []) : array
-    {
-        return $this->delete("{$this->commitUri}/properties/{$appKey}/{$propertyName}", $params);
-    }
-
-    /**
-     * Get application property value stored against commit
-     *
-     * @param string $appKey
-     * @param string $propertyName
-     * @param array  $params
-     *
-     * @return array
-     */
-    public function show(string $appKey, string $propertyName, array $params = []) : array
-    {
-        return $this->get("{$this->commitUri}/properties/{$appKey}/{$propertyName}", $params);
+        return new Property($appKey);
     }
 }

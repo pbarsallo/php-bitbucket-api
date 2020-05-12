@@ -2,4 +2,7 @@ File History
 ============
 [Back to user API](../user.md)
 
-#### Additional APIs
+#### Get list of commits that modified the specified file
+```php
+$bitbucket->repositories()->user('account')->fileHistory('repo_slug')->show('node', 'path');
+```

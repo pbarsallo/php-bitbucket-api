@@ -2,4 +2,7 @@ Diff
 ====
 [Back to user API](../user.md)
 
-#### Additional APIs
+#### Get raw git-style diff for commit
+```php
+$bitbucket->repositories()->user('account')->diff('repo_slug')->show('spec');
+```

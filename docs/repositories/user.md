@@ -4,28 +4,30 @@ User Repositories
 
 #### Update a specific repository
 ```php
-$bitbucket->repositories()->user('username')->update('repo_slug', [{params}]);
+$bitbucket->repositories()->user('account')->update('repo_slug', [{params}]);
 ```
 
 #### Create a new repository
 ```php
-$bitbucket->repositories()->user('username')->create('repo_slug', [{params}]);
+$bitbucket->repositories()->user('account')->create('repo_slug', [{params}]);
 ```
 
 #### Get repository description
 ```php
-$bitbucket->repositories()->user('username')->show('repo_slug');
+$bitbucket->repositories()->user('account')->show('repo_slug');
 ```
 
 #### Delete a repository (irreversibly)
 ```php
-$bitbucket->repositories()->user('username')->remove('repo_slug');
+$bitbucket->repositories()->user('account')->remove('repo_slug');
 ```
 
 #### Additional APIs
 * [Branch Restrictions](user/branch_restrictions.md)
 * [Branching Model](user/branching_model.md)
 * [Commit](user/commit.md)
+    * [Comments](user/commit/comments.md)
+    * [Statuses](user/commit/statuses.md)
 * [Commits](user/commits.md)
 * [Components](user/components.md)
 * [Default Reviewers](user/default_reviewers.md)

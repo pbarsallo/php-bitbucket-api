@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bitbucket\Api\Repositories\Workspace;
 
 use Bitbucket\Api\Repositories\BaseRepositoriesApi;
+use Bitbucket\Http\HttpClient;
 
 /**
  * Base Workspace Repositories API Class
@@ -24,9 +25,10 @@ class BaseWorkspaceApi extends BaseRepositoriesApi
     protected $workspaceRepositoryUri;
 
     /**
-     * Create new base workspace API instance
+     * Create new base user API instance
      *
-     * @param string $repoSlug
+     * @param HttpClient $httpClient
+     * @param string     $repoSlug
      *
      * @return void
      */
@@ -34,6 +36,6 @@ class BaseWorkspaceApi extends BaseRepositoriesApi
     {
         parent::__construct($this->username);
         $this->repoSlug = $repoSlug;
-        $this->workspaceRepositoryUri = "{$this->userRepositoriesUri}/{$repoSlug}";
+        $this->workspaceRepositoryUri = "{$this->workspaceRepositoriesUri}/{$repoSlug}";
     }
 }
